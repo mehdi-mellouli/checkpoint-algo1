@@ -1,0 +1,33 @@
+ALGORITHM Sentence
+VAR
+L.Sentence:INTEGER:=0;
+N.Word:INTEGER:=0;
+N.Vowels:INTEGER:=0; 
+Vowels: ARRAY_OF CHAR[6]:=["a", "e", "i", "o", "u", "y"]; 
+i:INTEGER:=0; 
+str : ARRAY_OF STRING[];
+BEGIN
+// ecrire et lire la phrase 
+    write("write your sentence : ",str);
+    Read(str);
+    IF (str[str.length-2] < > " ") THEN
+        N.Word+=1;
+    END_IF
+    WHILE (str[i]<>".") DO 
+//sauter les espaces et detecter si il y'a un mot
+        IF(str[i]<>" ") THEN 
+            L.Sentence+=1;
+            IF(Vowels.includes(str[i])) THEN 
+                N.Vowels+=1;
+            END_IF
+            ELSE 
+            if ((str[i-1]<>" ")and(i<>0))THEN
+                N.Word+=1;
+            END_IF
+        END_IF
+        i+=1;
+    END_WHILE
+    write(L.Sentence);
+    write(N.Word);
+    write(N.Vowels);
+END
